@@ -1,8 +1,8 @@
 package com.example.shareit.user;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface UserRepository {
-    List<User> findAll();
+    Collection<User> findAll();
     User getUserById(long id);
 }
