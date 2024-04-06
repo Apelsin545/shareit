@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class InMemoryBookRepository implements BookRepository {
-    private final Map<Long, Book> books = new HashMap<>();
+public class InMemoryBookRepository implements BookingRepository {
+    private final Map<Long, Booking> books = new HashMap<>();
 
     @Override
-    public Collection<Book> findAll() {
+    public Collection<Booking> findAll() {
         return books.values();
     }
 
     @Override
-    public Book getBookById(long id) {
+    public Booking getBookById(long id) {
         return books.get(id);
     }
 }
