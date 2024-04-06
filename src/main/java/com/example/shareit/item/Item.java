@@ -10,10 +10,5 @@ public class Item {
     private String name;
     private String description;
 
-    private accessStatus status;
-
-    private enum accessStatus {
-        AVAILABLE,
-        NOT_AVAILABLE
-    }
+    private AccessStatus status;
 }
