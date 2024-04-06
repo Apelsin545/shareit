@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class ItemRequest {
     private User user;
-    private String name;
+    private String itemName;
 }
