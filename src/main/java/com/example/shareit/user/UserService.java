@@ -8,18 +8,26 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository users;
+    private final UserDTOMapper mapper;
 
     @Autowired
-    public UserService(UserRepository users) {
+
+    public UserService(UserRepository users, UserDTOMapper mapper) {
         this.users = users;
+        this.mapper = mapper;
     }
 
-    public List<User> getAllUsers() {
-        return users.findAll();
+
+    public List<UserDTO> getAllUsers() {
+        return users
+                .findAll()
+                .stream()
+                .map(mapper)
+                .toList();
     }
 
-    public User findUserById(long id) {
-        return users.getUserById(id);
+    public UserDTO findUserById(long id) {
+        return mapper.apply(users.getUserById(id));
     }
 
     public User addUser(User user) {
