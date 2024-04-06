@@ -17,4 +17,9 @@ public class InMemoryUserRepository implements UserRepository {
     public User getUserById(long id) {
         return users.get(id);
     }
+
+    @Override
+    public User add(User user) {
+        return users.put(user.getId(), user);
+    }
 }
