@@ -1,7 +1,7 @@
 package com.example.shareit.item;
 
 public record ItemDTO(
-        int id,
+        long id,
         String name,
         String description,
         AccessStatus status
