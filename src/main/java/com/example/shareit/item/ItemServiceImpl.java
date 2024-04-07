@@ -16,12 +16,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item addItem(Item item) {
-        return null;
+        return items.add(item);
     }
 
     @Override
-    public Item changeItem(long itemId) {
-        return null;
+    public Item changeItem(Item item) {
+        return items.add(item);
     }
 
     @Override
