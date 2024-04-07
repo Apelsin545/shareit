@@ -3,13 +3,13 @@ package com.example.shareit.item;
 import java.util.List;
 
 public interface ItemService {
-    Item addItem(Item item);
+    ItemDTO addItem(ItemDTO item, long userId);
 
-    Item changeItem(Item item);
+    ItemDTO changeItem(ItemDTO item, long userId);
 
-    Item getItemById(long itemId);
+    ItemDTO getItemById(long itemId);
 
-    List<Item> getOwnersItems(long userId);
+    List<ItemDTO> getOwnersItems(long userId);
 
-    List<Item> searchItem(String text, long userId);
+    List<ItemDTO> searchItem(String text, long userId);
 }
