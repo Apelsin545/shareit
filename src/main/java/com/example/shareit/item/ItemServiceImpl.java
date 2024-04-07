@@ -26,12 +26,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item getItemById(long itemId) {
-        return null;
+        return items.getItemById(itemId);
     }
 
     @Override
     public List<Item> getOwnersItems(long userId) {
-        return null;
+        return items.findAll()
+                .stream()
+                .filter(a -> a.getOwner().getId() == userId)
+                .toList();
     }
 
     @Override
