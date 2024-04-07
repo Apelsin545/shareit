@@ -2,12 +2,14 @@ package com.example.shareit.item;
 
 import com.example.shareit.user.UserRepository;
 import com.example.shareit.user.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository items;
     private final UserRepository users;
@@ -25,12 +27,16 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDTO addItem(ItemDTO item, long userId) {
-        return mapperTo.apply(items.add(mapperFrom.convert(item, users.getUserById(userId))));
+        items.add(mapperFrom.convert(item, users.getUserById(userId)));
+
+        return mapperTo.apply(items.getItemById(item.id()));
     }
 
     @Override
     public ItemDTO changeItem(ItemDTO item, long userId) {
-        return mapperTo.apply(items.add(mapperFrom.convert(item, users.getUserById(userId))));
+        items.add(mapperFrom.convert(item, users.getUserById(userId)));
+
+        return mapperTo.apply(items.getItemById(item.id()));
     }
 
     @Override
