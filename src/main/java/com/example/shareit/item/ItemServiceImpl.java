@@ -39,6 +39,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> searchItem(String text, long userId) {
-        return null;
+        return items.findAll()
+                .stream()
+                .filter(a -> ((a.getName().contains(text) || a.getDescription().contains(text))
+                        && a.getOwner().getId() != userId))
+                .toList();
     }
 }
