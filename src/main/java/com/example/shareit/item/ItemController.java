@@ -34,4 +34,9 @@ public class ItemController {
     public ItemDTO addItem(@RequestBody ItemDTO item, @RequestHeader("X-Sharer-User_Id") long userId) {
         return itemService.addItem(item, userId);
     }
+
+    @PatchMapping("")
+    public ItemDTO changeItem(@RequestParam ItemDTO item, @RequestHeader("X-Sharer-User_Id") long userId) {
+        return itemService.changeItem(item, userId);
+    }
 }
