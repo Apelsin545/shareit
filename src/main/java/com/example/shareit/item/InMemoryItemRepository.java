@@ -20,4 +20,9 @@ public class InMemoryItemRepository implements ItemRepository {
     public Item getItemById(long id) {
         return items.get(id);
     }
+
+    @Override
+    public Item add(Item item) {
+        return items.put(item.getId(), item);
+    }
 }
