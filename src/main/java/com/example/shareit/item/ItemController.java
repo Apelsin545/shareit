@@ -29,4 +29,9 @@ public class ItemController {
     public List<ItemDTO> searchItem(@RequestParam String text, @RequestHeader("X-Sharer-User_Id") long userId) {
         return itemService.searchItem(text, userId);
     }
+
+    @PostMapping("")
+    public ItemDTO addItem(@RequestBody ItemDTO item, @RequestHeader("X-Sharer-User_Id") long userId) {
+        return itemService.addItem(item, userId);
+    }
 }
