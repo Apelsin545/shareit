@@ -1,14 +1,12 @@
 package com.example.shareit.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/items")
 public class ItemController {
     private final ItemService itemService;
 
@@ -17,13 +15,18 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/items/{itemId}")
+    @GetMapping("/{itemId}")
     public ItemDTO getItemById(@PathVariable long itemId) {
         return itemService.getItemById(itemId);
     }
 
-    @GetMapping("items")
+    @GetMapping("")
     public List<ItemDTO> getOwnersItems(@RequestHeader("X-Sharer-User_Id") long userId) {
         return itemService.getOwnersItems(userId);
+    }
+
+    @GetMapping("/search")
+    public List<ItemDTO> searchItem(@RequestParam String text, @RequestHeader("X-Sharer-User_Id") long userId) {
+        return itemService.searchItem(text, userId);
     }
 }
