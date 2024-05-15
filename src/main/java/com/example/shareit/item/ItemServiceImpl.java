@@ -26,14 +26,14 @@ public class ItemServiceImpl implements ItemService {
     public ItemDTO addItem(ItemDTO item, long userId) {
         items.save(itemMapper.fromDto(item, users.getReferenceById(userId)));
 
-        return itemMapper.toDto(items.getReferenceById(item.id()));
+        return item;
     }
 
     @Override
     public ItemDTO changeItem(ItemDTO item, long userId) {
         items.save(itemMapper.fromDto(item, users.getReferenceById(userId)));
 
-        return itemMapper.toDto(items.getReferenceById(item.id()));
+        return item;
     }
 
     @Override

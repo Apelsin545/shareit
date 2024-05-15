@@ -12,23 +12,26 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Entity
-@Table
+@Table(name = "items", schema = "public")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id")
     private final Long id;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @Column
+    @Column(name = "item_name")
     private String name;
 
-    @Column
+    @Column(name = "item_description")
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(name = "access_status")
     private AccessStatus status;
+
+
 }

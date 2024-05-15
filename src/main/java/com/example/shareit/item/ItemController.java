@@ -21,22 +21,22 @@ public class ItemController {
     }
 
     @GetMapping("")
-    public List<ItemDTO> getOwnersItems(@RequestHeader("X-Sharer-User_Id") long userId) {
+    public List<ItemDTO> getOwnersItems(@RequestHeader("X-Sharer-User_Id") Long userId) {
         return itemService.getOwnersItems(userId);
     }
 
     @GetMapping("/search")
-    public List<ItemDTO> searchItem(@RequestParam String text, @RequestHeader("X-Sharer-User_Id") long userId) {
+    public List<ItemDTO> searchItem(@RequestParam String text, @RequestHeader("X-Sharer-User_Id") Long userId) {
         return itemService.searchItem(text, userId);
     }
 
     @PostMapping("")
-    public ItemDTO addItem(@RequestBody ItemDTO item, @RequestHeader("X-Sharer-User_Id") long userId) {
+    public ItemDTO addItem(@RequestBody ItemDTO item, @RequestHeader("X-Sharer-User_Id") Long userId) {
         return itemService.addItem(item, userId);
     }
 
     @PatchMapping("")
-    public ItemDTO changeItem(@RequestParam ItemDTO item, @RequestHeader("X-Sharer-User_Id") long userId) {
+    public ItemDTO changeItem(@RequestParam ItemDTO item, @RequestHeader("X-Sharer-User_Id") Long userId) {
         return itemService.changeItem(item, userId);
     }
 }
