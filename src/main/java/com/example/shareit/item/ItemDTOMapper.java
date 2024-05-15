@@ -1,19 +1,29 @@
 package com.example.shareit.item;
 
+import com.example.shareit.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-public class ItemDTOMapper implements Function<Item, ItemDTO> {
+public class ItemDTOMapper {
 
-    @Override
-    public ItemDTO apply(Item item) {
+    public ItemDTO toDto(Item item) {
         return new ItemDTO(
                 item.getId(),
                 item.getName(),
                 item.getDescription(),
                 item.getStatus()
+        );
+    }
+
+    public Item fromDto(ItemDTO itemDTO, User user) {
+        return new Item(
+                itemDTO.id(),
+                user,
+                itemDTO.name(),
+                itemDTO.description(),
+                itemDTO.status()
         );
     }
 }

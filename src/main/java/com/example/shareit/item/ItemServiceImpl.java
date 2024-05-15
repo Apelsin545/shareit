@@ -13,35 +13,32 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository items;
     private final UserRepository users;
-    private final ItemDTOMapper mapperTo;
-    private final ItemDTOtoItemMapper mapperFrom;
-
+    private final ItemDTOMapper itemMapper;
 
     @Autowired
-    public ItemServiceImpl(ItemRepository items, UserRepository users, ItemDTOMapper mapperTo, ItemDTOtoItemMapper mapperFrom) {
+    public ItemServiceImpl(ItemRepository items, UserRepository users, ItemDTOMapper itemMapper) {
         this.items = items;
         this.users = users;
-        this.mapperTo = mapperTo;
-        this.mapperFrom = mapperFrom;
+        this.itemMapper = itemMapper;
     }
 
     @Override
     public ItemDTO addItem(ItemDTO item, long userId) {
-        items.add(mapperFrom.convert(item, users.getUserById(userId)));
+        items.add(itemMapper.fromDto(item, users.getUserById(userId)));
 
-        return mapperTo.apply(items.getItemById(item.id()));
+        return itemMapper.toDto(items.getItemById(item.id()));
     }
 
     @Override
     public ItemDTO changeItem(ItemDTO item, long userId) {
-        items.add(mapperFrom.convert(item, users.getUserById(userId)));
+        items.add(itemMapper.fromDto(item, users.getUserById(userId)));
 
-        return mapperTo.apply(items.getItemById(item.id()));
+        return itemMapper.toDto(items.getItemById(item.id()));
     }
 
     @Override
     public ItemDTO getItemById(long itemId) {
-        return mapperTo.apply(items.getItemById(itemId));
+        return itemMapper.toDto(items.getItemById(itemId));
     }
 
     @Override
@@ -49,7 +46,12 @@ public class ItemServiceImpl implements ItemService {
         return items.findAll()
                 .stream()
                 .filter(a -> a.getOwner().getId() == userId)
-                .map(mapperTo)
+                .map(item -> new ItemDTO(
+                        item.getId(),
+                        item.getName(),
+                        item.getDescription(),
+                        item.getStatus()
+                ))
                 .toList();
     }
 
@@ -59,7 +61,12 @@ public class ItemServiceImpl implements ItemService {
                 .stream()
                 .filter(a -> ((a.getName().contains(text) || a.getDescription().contains(text))
                         && a.getOwner().getId() != userId))
-                .map(mapperTo)
+                .map(item -> new ItemDTO(
+                        item.getId(),
+                        item.getName(),
+                        item.getDescription(),
+                        item.getStatus()
+                ))
                 .toList();
     }
 }
