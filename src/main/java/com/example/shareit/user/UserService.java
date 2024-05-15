@@ -11,7 +11,6 @@ public class UserService {
     private final UserDTOMapper mapper;
 
     @Autowired
-
     public UserService(UserRepository users, UserDTOMapper mapper) {
         this.users = users;
         this.mapper = mapper;

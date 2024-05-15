@@ -19,7 +19,7 @@ public class ItemDTOMapper {
 
     public Item fromDto(ItemDTO itemDTO, User user) {
         return new Item(
-                itemDTO.id(),
+                user.getId(),
                 user,
                 itemDTO.name(),
                 itemDTO.description(),
