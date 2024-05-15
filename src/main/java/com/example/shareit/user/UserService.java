@@ -26,10 +26,10 @@ public class UserService {
     }
 
     public UserDTO findUserById(long id) {
-        return mapper.apply(users.getUserById(id));
+        return mapper.apply(users.getReferenceById(id));
     }
 
     public User addUser(User user) {
-        return users.add(user);
+        return users.save(user);
     }
 }

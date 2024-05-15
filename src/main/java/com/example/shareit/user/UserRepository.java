@@ -1,12 +1,11 @@
 package com.example.shareit.user;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+
 import java.util.Collection;
 import java.util.List;
 
-public interface UserRepository {
-    List<User> findAll();
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    User getUserById(long id);
-
-    User add(User user);
 }

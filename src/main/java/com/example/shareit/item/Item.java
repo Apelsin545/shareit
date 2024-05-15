@@ -16,7 +16,7 @@ import java.util.Set;
 public class Item {
     @Id
     @GeneratedValue
-    private final long id;
+    private final Long id;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -29,5 +29,6 @@ public class Item {
     private String description;
 
     @Enumerated(EnumType.STRING)
+    @Column
     private AccessStatus status;
 }
