@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Table
 public class Booking {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Long id;
 
     @ManyToOne

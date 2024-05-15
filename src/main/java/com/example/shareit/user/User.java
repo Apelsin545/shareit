@@ -9,17 +9,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Entity
-@Table
+@Table(name = "users", schema = "public")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Long id;
 
-    @Column
+    @Column(name = "user_name")
     private String name;
 
-    @Column
+    @Column(name = "user_login")
     private String login;
-    @Column
+
+    @Column(name = "user_password")
     private String password;
 }

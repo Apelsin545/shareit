@@ -15,7 +15,7 @@ import java.util.Set;
 @Table
 public class Item {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final Long id;
 
     @ManyToOne
